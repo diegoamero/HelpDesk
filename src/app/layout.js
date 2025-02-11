@@ -1,15 +1,11 @@
-import { Geist, Geist_Mono } from "next/font/google";
+//import {Arial} from 'next/font/google';
 import "./globals.css";
+//css modules below
+import styles from './styles.module.css'
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+/*const arial = Arial({
+subsets: ["latin"],
+});*/
 
 export const metadata = {
   title: "Create Next App",
@@ -19,9 +15,32 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+
+      <body>
+        <header className={styles.header}>
+          <ul className={styles.header__element}><input type="button" value="" />Logo</ul>
+          <ul className={`${styles.header__element} ${styles.header__search}`}><input type="search" placeholder="Busca a un miembro del equipo..." name="" id=""/></ul>
+          <ul className={styles.header__element}><input type="button" value="" />Notificacion</ul>
+        </header>
+        <div className={styles.main}>
+          <aside className={styles.lateralBar}>
+            <ul className={styles.lateralBar__element}>
+              <a href="/" rel="noopener noreferrer">Inicio</a>
+            </ul>
+            <ul className={styles.lateralBar__element}>
+              <a href="/team" rel="noopener noreferrer">Mi equipo</a>
+            </ul>
+            <ul className={styles.lateralBar__element}>
+              <a href="/dashboards" rel="noopener noreferrer">Reportes</a>
+            </ul>
+            <ul className={styles.lateralBar__element}>
+              <a href="/cases" rel="noopener noreferrer">Casos</a>
+            </ul>
+          </aside>
+          {children}
+        </div>
       </body>
+
     </html>
   );
 }
