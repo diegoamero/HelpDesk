@@ -84,6 +84,7 @@ export default function Form() {
                                    
                     <label htmlFor="reporter_sex">Sexo:</label>
                     <select name="reporter_sex" onChange={handleChangeReporter} value={formReporterData.reporter_sex} required className={styles.form__element}>
+                        <option value=""></option>
                         <option value="Masculino">Masculino</option>
                         <option value="Femenino">Femenino</option>
                         <option value="Otro">Otro</option>
@@ -96,6 +97,7 @@ export default function Form() {
                     
                     <label htmlFor="priority">Urgencia del caso:</label>
                     <select name="priority" onChange={handleChangeReport} value={formReportData.priority} required className={styles.form__element}>
+                        <option value=""></option>
                         <option value="Alta">Alta</option>
                         <option value="Media">Media</option>
                         <option value="Baja">Baja</option>
@@ -103,6 +105,7 @@ export default function Form() {
                     
                     <label htmlFor="status">Estado del caso:</label>
                     <select name="status" onChange={handleChangeReport} value={formReportData.status} required className={styles.form__element}>
+                        <option value=""></option>
                         <option value="Cerrado">Cerrado</option>
                         <option value="En progreso">En progreso</option>
                         <option value="Pausado">Pausado</option>
