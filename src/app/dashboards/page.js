@@ -1,6 +1,7 @@
 'use client';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Sector, Cell} from 'recharts';
-import styles from './styles.module.css'
+import styles from './styles.module.css';
+import VerticalComposedChart from './VerticalComposedChart';
 
 const datos = [
   { name: 'Group A', value: 400 },
@@ -27,7 +28,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 const PieChartComponent = () => {
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <PieChart>
+      <PieChart height={300}>
         <Pie
           data={datos}
           cx="50%"
@@ -71,7 +72,7 @@ export default function Page() {
         </LineChart>
       </div>
       <div style={{ width: '500px', height: '300px' }}> {/* Set a specific width and height */}
-      <PieChartComponent />
+      <VerticalComposedChart/>
     </div>
     </div>
   );
