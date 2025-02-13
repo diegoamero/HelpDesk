@@ -71,6 +71,14 @@ export default function Form() {
                     <input className={styles.form__element_input} type="text" name="case_manager_last_name" onChange={handleChangeCaseManager} placeholder="Mejia" required />
                 </div>
                 <div className="form__element__container">
+                    <label className={styles.form__element_title} htmlFor="case_manager_lastt_name_last_name">Sexo:</label>
+                    <select name="case_manager_sex">
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Mujer">Otro</option>
+                    </select>
+                </div>
+                <div className="form__element__container">
                     <label className={styles.form__element_title} htmlFor="case_manager_id">Id:</label>
                     <input className={styles.form__element_input} type="text" name="case_manager_id" value={id} onChange={handleChangeCaseManager} placeholder="21" readOnly />
                 </div>
