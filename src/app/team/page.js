@@ -1,8 +1,8 @@
 'use client';
-import styles from "./styles.module.css"
-import Member_card from "./Member_card.js"
+import styles from "./styles.module.css";
+import Member_card from "./Member_card.js";
 import { useEffect, useState } from "react";
-
+import FormCaseManager from './FormCaseManager';
 
 export default function Page() {
   const[data, setData] = useState([]);
@@ -17,12 +17,14 @@ export default function Page() {
   }, []);
 
   return(
-    <main className={styles.card__container}>
+    <main className={styles.team__container}>
+      <div className={styles.card__container}>
       {data.map((member) => (
         <Member_card key={member[0]} id={member[0]} name={member[1]} lastname={member[2]} sex={member[3]}/>
       ))
-
       }
+      </div>
+      <FormCaseManager/>
     </main>
   );
 }

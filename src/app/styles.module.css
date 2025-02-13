@@ -48,7 +48,12 @@
   padding: 0.5rem 0;
 }
 
-.lateralBar__element:hover {
+.lateralBar__element a{
+  text-decoration: none;
+  color: #ccc;
+}
+
+.lateralBar__element a:hover {
   color: #4ea2fe;
 }
 
