@@ -6,16 +6,11 @@ import { v4 as uuidv4 } from 'uuid';
 export default function Form() {
 
     const [formCaseManager, setformCaseManager] = useState({
-        caseManager_id: '',
-        caseManager_name: '',
-        caseManager_lastname: '',
+        manager_id: '',
+        manager_first_name: '',
+        manager_last_name: '',
+        manager_sex : ''
     });
-
-    const [id, setId] = useState('');
-
-    useEffect(() => {
-        setId(uuidv4());
-    }, []);
 
     const handleChangeCaseManager = (e) => {
         const { name, value } = e.target;
@@ -28,27 +23,20 @@ export default function Form() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const updatedformCaseManager = {
-            ...formCaseManager,
-        };
-
-        const formData = {
-            ...updatedformCaseManager,
-        };
-
-        console.log(formData);
+        console.log(formCaseManager);
 
         try {
-            const response = await fetch('http://localhost:8000/api/casemanagers/create/', {
+            const response = await fetch('http://localhost:8000/api/casemanagers/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(formCaseManager)
             });
             if (response.ok) {
                 // Handle successful response
                 console.log('Case manager successfully registred');
+                alert('Registro exitoso');
             } else {
                 // Handle error response
                 console.error('Failed to submit case manager register');
@@ -63,24 +51,25 @@ export default function Form() {
             <div className={styles.input__container}>
                 <h3>Ingresa los datos del nuevo gestor de casos</h3>
                 <div className="form__element__container">
-                    <label className={styles.form__element_title} htmlFor="case_manager_first_name">Nombre:</label>
-                    <input className={styles.form__element_input} type="text" name="case_manager_first_name" onChange={handleChangeCaseManager} placeholder="Diego" required />
+                    <label className={styles.form__element_title} htmlFor="manager_id">ID:</label>
+                    <input className={styles.form__element_input} type="number" name="manager_id" onChange={handleChangeCaseManager} placeholder="Diego" required />
                 </div>
                 <div className="form__element__container">
-                    <label className={styles.form__element_title} htmlFor="case_manager_lastt_name_last_name">Apellido:</label>
-                    <input className={styles.form__element_input} type="text" name="case_manager_last_name" onChange={handleChangeCaseManager} placeholder="Mejia" required />
+                    <label className={styles.form__element_title} htmlFor="manager_first_name">Nombre:</label>
+                    <input className={styles.form__element_input} type="text" name="manager_first_name" onChange={handleChangeCaseManager} placeholder="Diego" required />
                 </div>
                 <div className="form__element__container">
-                    <label className={styles.form__element_title} htmlFor="case_manager_lastt_name_last_name">Sexo:</label>
-                    <select name="case_manager_sex">
+                    <label className={styles.form__element_title} htmlFor="manager_lastt_name_last_name">Apellido:</label>
+                    <input className={styles.form__element_input} type="text" name="manager_last_name" onChange={handleChangeCaseManager} placeholder="Mejia" required />
+                </div>
+                <div className="form__element__container">
+                    <label className={styles.form__element_title} htmlFor="manager_lastt_name_last_name">Sexo:</label>
+                    <select name="manager_sex" onChange={handleChangeCaseManager}>
+                        <option value=""></option>
                         <option value="Masculino">Masculino</option>
                         <option value="Femenino">Femenino</option>
                         <option value="Mujer">Otro</option>
                     </select>
-                </div>
-                <div className="form__element__container">
-                    <label className={styles.form__element_title} htmlFor="case_manager_id">Id:</label>
-                    <input className={styles.form__element_input} type="text" name="case_manager_id" value={id} onChange={handleChangeCaseManager} placeholder="21" readOnly />
                 </div>
             </div>
             <input type="submit" value="Registrar" className={styles.btn} />
