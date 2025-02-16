@@ -6,11 +6,13 @@ import { v4 as uuidv4 } from 'uuid';
 export default function Form() {
 
     const [formCaseManager, setformCaseManager] = useState({
-        manager_id: '',
-        manager_first_name: '',
-        manager_last_name: '',
-        manager_sex : ''
+        supporter_name: '',
+        supporter_lastname: '',
+        supporter_department: ''
     });
+    
+    const [departments, setDepartments] = useState([]);
+    const [id, setId] = useState('');
 
     const handleChangeCaseManager = (e) => {
         const { name, value } = e.target;
@@ -26,7 +28,7 @@ export default function Form() {
         console.log(formCaseManager);
 
         try {
-            const response = await fetch('http://localhost:8000/api/casemanagers/create', {
+            const response = await fetch('http://localhost:8000/api/supporters/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -46,29 +48,50 @@ export default function Form() {
         }
     };
 
+    useEffect(()=>{
+        const newId = uuidv4()
+        setId(newId);
+        setformCaseManager({
+            ...formCaseManager,
+            supporter_id: newId 
+        })
+        async function getDepartments(){
+            try{
+                const response = await fetch('http://localhost:8000/api/departments/');
+                const data = await response.json();
+                await setDepartments(data);
+            } catch (error) {
+                console.error(error);
+            }
+        }   
+        getDepartments();
+    }, [])
+
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.input__container}>
                 <h3>Ingresa los datos del nuevo gestor de casos</h3>
-                <div className={styles.form__element__container}>
-                    <label className={styles.form__element_title} htmlFor="manager_id">ID:</label>
-                    <input className={styles.form__element_input} type="number" name="manager_id" onChange={handleChangeCaseManager} placeholder="20" required />
+                <div className="form__element__container">
+                    <label className={styles.form__element_title} htmlFor="supporter_id">ID:</label>
+                    <input className={styles.form__element_input} type="text" name="supporter_id" onChange={handleChangeCaseManager} value={id} required readOnly/>
                 </div>
-                <div className={styles.form__element__container}>
-                    <label className={styles.form__element_title} htmlFor="manager_first_name">Nombre:</label>
-                    <input className={styles.form__element_input} type="text" name="manager_first_name" onChange={handleChangeCaseManager} placeholder="Diego" required />
+                <div className="form__element__container">
+                    <label className={styles.form__element_title} htmlFor="supporter_name">Nombre:</label>
+                    <input className={styles.form__element_input} type="text" name="supporter_name" onChange={handleChangeCaseManager} placeholder="Diego" required />
                 </div>
-                <div className={styles.form__element__container}>
-                    <label className={styles.form__element_title} htmlFor="manager_lastt_name_last_name">Apellido:</label>
-                    <input className={styles.form__element_input} type="text" name="manager_last_name" onChange={handleChangeCaseManager} placeholder="Mejia" required />
+                <div className="form__element__container">
+                    <label className={styles.form__element_title} htmlFor="supporter_lastname">Apellido:</label>
+                    <input className={styles.form__element_input} type="text" name="supporter_lastname" onChange={handleChangeCaseManager} placeholder="Mejia" required />
                 </div>
-                <div className={styles.form__element__container}>
-                    <label className={styles.form__element_title} htmlFor="manager_lastt_name_last_name">Sexo:</label>
-                    <select name="manager_sex" onChange={handleChangeCaseManager}>
+                <div className="form__element__container">
+                    <label className={styles.form__element_title} htmlFor="supporter_department">Departamento:</label>
+                    <select name="supporter_department" onChange={handleChangeCaseManager}>
                         <option value=""></option>
-                        <option value="Masculino">Masculino</option>
-                        <option value="Femenino">Femenino</option>
-                        <option value="Mujer">Otro</option>
+                        {departments.map((department)=>{
+                            return(
+                                <option key={department[0]} value={department[0]}>{department[1]}</option>
+                            )
+                        })}
                     </select>
                 </div>
             </div>

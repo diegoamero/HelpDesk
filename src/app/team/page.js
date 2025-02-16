@@ -9,7 +9,7 @@ export default function Page() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch('http://localhost:8000/api/casemanagers/');
+      const response = await fetch('http://localhost:8000/api/supporters/');
       const data = await response.json();
       setData(data);
     };
@@ -18,13 +18,12 @@ export default function Page() {
 
   return(
     <main className={styles.team__container}>
-      {/**<div className={styles.card__container}>
-      {data.map((member) => (
-        <Member_card key={member[0]} id={member[0]} name={member[1]} lastname={member[2]} sex={member[3]}/>
-      ))
-      }
-      </div>**/}
+      <div className={styles.card__container}>
+        {data.map((supporter) => (
+          <Member_card key={supporter[0]} name={supporter[1]} lastname={supporter[2]} department={supporter[3]}/>
+        ))}
+      </div>
       <FormCaseManager/>
     </main>
-  );
+  )
 }
