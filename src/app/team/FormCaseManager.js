@@ -47,22 +47,22 @@ export default function Form() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.input__container}>
                 <h3>Ingresa los datos del nuevo gestor de casos</h3>
-                <div className="form__element__container">
+                <div className={styles.form__element__container}>
                     <label className={styles.form__element_title} htmlFor="manager_id">ID:</label>
-                    <input className={styles.form__element_input} type="number" name="manager_id" onChange={handleChangeCaseManager} placeholder="Diego" required />
+                    <input className={styles.form__element_input} type="number" name="manager_id" onChange={handleChangeCaseManager} placeholder="20" required />
                 </div>
-                <div className="form__element__container">
+                <div className={styles.form__element__container}>
                     <label className={styles.form__element_title} htmlFor="manager_first_name">Nombre:</label>
                     <input className={styles.form__element_input} type="text" name="manager_first_name" onChange={handleChangeCaseManager} placeholder="Diego" required />
                 </div>
-                <div className="form__element__container">
+                <div className={styles.form__element__container}>
                     <label className={styles.form__element_title} htmlFor="manager_lastt_name_last_name">Apellido:</label>
                     <input className={styles.form__element_input} type="text" name="manager_last_name" onChange={handleChangeCaseManager} placeholder="Mejia" required />
                 </div>
-                <div className="form__element__container">
+                <div className={styles.form__element__container}>
                     <label className={styles.form__element_title} htmlFor="manager_lastt_name_last_name">Sexo:</label>
                     <select name="manager_sex" onChange={handleChangeCaseManager}>
                         <option value=""></option>

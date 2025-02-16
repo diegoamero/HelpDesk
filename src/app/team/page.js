@@ -18,12 +18,12 @@ export default function Page() {
 
   return(
     <main className={styles.team__container}>
-      <div className={styles.card__container}>
+      {/**<div className={styles.card__container}>
       {data.map((member) => (
         <Member_card key={member[0]} id={member[0]} name={member[1]} lastname={member[2]} sex={member[3]}/>
       ))
       }
-      </div>
+      </div>**/}
       <FormCaseManager/>
     </main>
   );

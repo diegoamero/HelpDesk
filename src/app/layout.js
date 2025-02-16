@@ -1,7 +1,7 @@
 //import {Arial} from 'next/font/google';
 import "./globals.css";
 //css modules below
-import styles from './styles.module.css'
+import stylesG from './stylesG.module.css'
 
 /*const arial = Arial({
 subsets: ["latin"],
@@ -17,23 +17,22 @@ export default function RootLayout({ children }) {
     <html lang="en">
 
       <body>
-        <header className={styles.header}>
-          <ul className={styles.header__element}><input type="button" value="" />Logo</ul>
-          <ul className={`${styles.header__element} ${styles.header__search}`}><input type="search" placeholder="Busca a un miembro del equipo..." name="" id=""/></ul>
-          <ul className={styles.header__element}><input type="button" value="" />Notificacion</ul>
+        <header className={stylesG.header}>
+          <ul className={stylesG.header__element}><input type="button" value="" />Logo</ul>
+          <ul className={stylesG.header__element}><input type="button" value="" />Notificacion</ul>
         </header>
-        <div className={styles.main}>
-          <aside className={styles.lateralBar}>
-            <ul className={styles.lateralBar__element}>
+        <div className={stylesG.main}>
+          <aside className={stylesG.lateralBar}>
+            <ul className={stylesG.lateralBar__element}>
               <a href="/" rel="noopener noreferrer">Inicio</a>
             </ul>
-            <ul className={styles.lateralBar__element}>
+            <ul className={stylesG.lateralBar__element}>
               <a href="/team" rel="noopener noreferrer">Mi equipo</a>
             </ul>
-            <ul className={styles.lateralBar__element}>
+            <ul className={stylesG.lateralBar__element}>
               <a href="/dashboards" rel="noopener noreferrer">Reportes</a>
             </ul>
-            <ul className={styles.lateralBar__element}>
+            <ul className={stylesG.lateralBar__element}>
               <a href="/cases" rel="noopener noreferrer">Casos</a>
             </ul>
           </aside>
