@@ -1,57 +1,148 @@
-import React, { useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 
 export default function SearchForm(props) {
 
     const [formReportData, setFormReportData] = useState({
-        report_id: '',
-        reporter_id: '',
-        manager_id: '',
-        register_date: '',
-        atention_date: '',
-        close_date: '',
-        priority: '',
-        status: '',
+        ticket_id: '',
+        client_id: '',
+        supporter_id: '',
+        ticket_generation_date: '',
+        ticket_close_date: '',
+        ticket_status: '',
+        ticket_category: ''
     });
 
+    const [departments, setDepartments] = useState([])
+    const [clientName, setClientName] = useState('');
+    const [clientId, setClientId] = useState('');
+    const [supporterName, setSupporterName] = useState('');
+    const [supporterId, setSupporterId] = useState('');
+
+    useEffect(()=>{
+        async function getDepartments(){
+            try{
+                const response = await fetch('http://localhost:8000/api/departments/');
+                const data = await response.json();
+                await setDepartments(data);
+            } catch (error) {
+                console.error(error);
+            }
+        }   
+        getDepartments();
+    },[])
+
+    useEffect(()=>{
+        console.log(formReportData);
+        props.onSubmit(formReportData);
+    }, [formReportData.client_id, formReportData.supporter_id]);
+
+    async function getSupporterID(supporter_name){
+        try{
+            let url = 'http://localhost:8000/api/supporters/?'
+            const params = new URLSearchParams();
+            params.append('name', supporter_name);
+            url += params.toString()
+            const response = await fetch(url);
+            const data = await response.json();
+            console.log(data[0][0])
+            return data[0][0]
+        }catch{
+            return null;
+        }
+    }
+
+    async function getClientID(client_name){
+        try{
+            let url = 'http://localhost:8000/api/clients/?'
+            const params = new URLSearchParams();
+            params.append('name', client_name);
+            url += params.toString()
+            const response = await fetch(url);
+            const data = await response.json();
+            return data[0][0]
+        }catch{
+            return null;
+        }
+    }
+
     const handleChangeReport = (e) => {
-        const { name, value } = e.target;
-        console.log(name, value);
-        setFormReportData({
-            ...formReportData,
-            [name]: value
-        });
+        if(e.target.name === 'client_name'){
+            setClientName(e.target.value)
+            console.log(e.target.value)
+        }else if(e.target.name === 'supporter_name'){
+            setSupporterName(e.target.value)
+            console.log(e.target.value)
+        }else{
+            const { name, value } = e.target;
+            console.log(name, value);
+            setFormReportData({
+                ...formReportData,
+                [name]: value === ''? '' : value
+            });
+        }
     };
 
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        props.onSubmit(formReportData);
+        formReportData.client_id = '';
+        formReportData.supporter_id = '';
+        let clientIdResult = null;
+        let supporterIdResult = null;
+        if(clientName !== ''){
+            clientIdResult = await getClientID(clientName);
+        }
+        if(supporterName !== ''){
+            supporterIdResult = await getSupporterID(supporterName);
+        }
+        setFormReportData(prevData => ({
+            ...prevData,
+            client_id: clientIdResult !== null ? clientIdResult : prevData.client_id,
+            supporter_id: supporterIdResult !== null ? supporterIdResult : prevData.supporter_id
+        }));
+    };
+
+    const handleReset = () => {
+        setFormReportData({ // Restablece el estado a los valores iniciales
+            ticket_id: '',
+            client_name: '',
+            supporter_name: '',
+            ticket_generation_date: '',
+            ticket_close_date: '',
+            ticket_status: '',
+            ticket_category: ''
+        });
+        setClientName('');
+        setSupporterName('');
+        console.log(formReportData)
+        console.log(clientName)
+        console.log(supporterName)
     };
 
     return(
         <div>
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="report_id" placeholder="ID del reporte" onChange={handleChangeReport}/>
-                <input type="text" name="reporter_id" placeholder="ID del cliente" onChange={handleChangeReport}/>
-                <input type="text" name="manager_id" placeholder="ID del gestor" onChange={handleChangeReport}/>
-                <input type="date" name="register_date" placeholder="Fecha de registro" onChange={handleChangeReport}/>
-                <input type="date" name="atention_date" placeholder="Fecha de atencion" onChange={handleChangeReport}/>
-                <input type="date" name="close_date" placeholder="Fecha de cierre" onChange={handleChangeReport}/>
+            <form onSubmit={handleSubmit} onReset={handleReset}>
+                <input type="text" name="ticket_id" placeholder="ID del reporte" onChange={handleChangeReport}/>
+                <input type="text" name="client_name" placeholder="Nombre del cliente" onChange={handleChangeReport}/>
+                <input type="text" name="supporter_name" placeholder="Nombre del supporter" onChange={handleChangeReport}/>
+                <input type="date" name="ticket_generation_date" placeholder="Fecha de registro" onChange={handleChangeReport}/>
+                <input type="date" name="ticket_close_date" placeholder="Fecha de cierre" onChange={handleChangeReport}/>
 
-                <select name="priority" onChange={handleChangeReport}>
-                        <option value=""></option>
-                        <option value="Alta">Alta</option>
-                        <option value="Media">Media</option>
-                        <option value="Baja">Baja</option>
-                </select>
-
-                <select name="status" onChange={handleChangeReport}>
+                <select name="ticket_status" onChange={handleChangeReport}>
                     <option value=""></option>
+                    <option value="Abierto">Abierto</option>
                     <option value="Cerrado">Cerrado</option>
-                    <option value="En progreso">En progreso</option>
-                    <option value="Pausado">Pausado</option>
                 </select>
 
+                <select name="ticket_category" onChange={handleChangeReport}>
+                    <option value=""></option>
+                    {departments.map((department)=>{
+                            return(
+                                <option key={department[0]} value={department[0]}>{department[1]}</option>
+                            )
+                    })}
+                </select>
+                <button type='reset'>Limpiar</button>
                 <button type="submit">Buscar</button>
             </form>
         </div>
