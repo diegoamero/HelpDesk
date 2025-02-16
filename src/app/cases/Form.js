@@ -1,6 +1,7 @@
 'use client'
 import styles from './styles.module.css';
 import { useState, useEffect, use } from 'react';
+import stylesG from '../stylesG.module.css';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function Form() {

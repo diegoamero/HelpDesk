@@ -68,7 +68,7 @@ export default function Form() {
     }, [])
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.input__container}>
                 <h3>Ingresa los datos del nuevo gestor de casos</h3>
                 <div className="form__element__container">
