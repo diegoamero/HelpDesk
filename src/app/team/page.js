@@ -20,7 +20,7 @@ export default function Page() {
     <main className={styles.team__container}>
       <div className={styles.card__container}>
       {data.map((supporter) => (
-        <Member_card key={supporter[0]} id={supporter[0]} name={supporter[1]} lastname={supporter[2]} department={supporter[3]}/>
+        <Member_card key={supporter[0]} name={supporter[1]} lastname={supporter[2]} department={supporter[3]}/>
       ))
       }
       </div>

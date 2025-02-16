@@ -1,26 +1,31 @@
 'use client'
 import styles from './styles.module.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function Form() {
     const [formTicketData, setFormTicketData] = useState({
-        ticket_category: 's',
-        ticket_supporter: 's',
-        ticket_description: 's',
-        ticket_generation_date: 's'
+        ticket_category: '',
+        ticket_supporter: '',
+        ticket_description: '',
+        ticket_generation_date: '',
+        ticket_id: ''
     });
 
     const [formClientData, setFormClientData] = useState({
-        client_name: 's',
-        client_lastname: 's',
-        client_age: 's',
-        client_sex: 's'
+        client_name: '',
+        client_lastname: '',
+        client_age: '',
+        client_sex: '',
+        client_id: '',
+        client_document: '',
+        client_city: ''
     });
 
     const [isNewClient, setIsNewClient] = useState(false);
     const [supporters, setSupporters] = useState([])
     const [departments, setDepartments] = useState([])
+    const [clientDocument, setClientDocument] = useState();
 
     useEffect(()=>{
         async function getDepartments(){
@@ -78,43 +83,81 @@ export default function Form() {
             [name]: value
         });
     };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const updatedFormReportData = {
-            ...formTicketData,
-            ticket_generation_date: new Date().toISOString().split('.')[0]
-        };
-        console.log(updatedFormReportData.ticket_generation_date);
-        const formData = { 
-            ...updatedFormReportData,
-            ...formClientData,
-            isNewClient : isNewClient,
-            client_id : isNewClient? uuidv4() : 's',
-            ticket_id : uuidv4()
 
-        };
-
-        console.log(formData);
-
-        try {
-            const response = await fetch('http://localhost:8000/api/tickets/create/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            });
-            if (response.ok) {
-                // Handle successful response
-                console.log('Case submitted successfully');
-            } else {
-                // Handle error response
-                console.error('Failed to submit case');
+        if(isNewClient){    
+            setFormClientData({
+                ...formClientData,
+                [client_id] : uuidv4()
+            })
+        }else{
+            setFormClientData({
+                ...formClientData,
+                client_document : clientDocument
+            }) 
+        }
+        
+        try{
+            if(!isNewClient){
+                let url = 'http://localhost:8000/api/clients/?';
+                const params = new URLSearchParams();
+                params.append('document', clientDocument);
+                url += params.toString();
+                console.log(url)
+                const response = await fetch(url);
+                const data = await response.json();
+                setFormClientData((prevState)=>({
+                    ...prevState,
+                    client_id : data[0][0]
+                }))
             }
         } catch (error) {
-            console.error('Error:', error);
+            console.error(error);
         }
     };
+
+    useEffect(()=>{
+        async function sendForm() {
+            console.log(formClientData)
+
+            const updatedFormReportData = {
+                ...formTicketData,
+                ticket_generation_date: new Date().toISOString().split('.')[0]
+            };
+            console.log(updatedFormReportData.ticket_generation_date);
+            const formData = { 
+                ...updatedFormReportData,
+                ...formClientData,
+                isNewClient : isNewClient,
+                ticket_id : uuidv4()
+    
+            };
+
+            console.log(formData)
+
+            try {
+                const response = await fetch('http://localhost:8000/api/tickets/create/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                if (response.ok) {
+                    // Handle successful response
+                    console.log('Case submitted successfully');
+                } else {
+                    // Handle error response
+                    console.error('Failed to submit case');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+        sendForm();
+    },[formClientData.client_id])
 
     return(
         <div className={styles.form}>
@@ -157,7 +200,10 @@ export default function Form() {
                         ) :
                             <>
                                 <label htmlFor='client_document'>Documento del cliente:</label>
-                                <input type='text' name='client_document' onChange={handleChangeClient} required></input>
+                                <input type='text' name='client_document' onChange={(e)=>{
+                                    setClientDocument(e.target.value)
+                                    console.log(clientDocument)
+                                }}required></input>
                             </>
                     }
 
