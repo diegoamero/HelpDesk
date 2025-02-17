@@ -4,6 +4,7 @@ import styles from './styles.module.css';
 import VerticalComposedChart from './VerticalComposedChart';
 import City from './City';
 import PieGrafico from './pieChart';
+import Cases from './Cases';
 
 export default function Page() {
   return (
@@ -22,8 +23,11 @@ export default function Page() {
           <City />
         </div>
         <div className={styles.chartContainer4}>
-        <h4 className={styles.chartTitles}>Casos por género</h4>
-          <PieGrafico/>
+          <h4 className={styles.chartTitles}>Casos por género</h4>
+          <PieGrafico />
+        </div>
+        <div className={styles.chartContainer5}>
+          <Cases/>
         </div>
       </div>
     </div>

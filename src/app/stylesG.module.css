@@ -5,18 +5,22 @@
 
 .body__container {
   width: 100%;
-  height: 100%;
+}
+
+.layout{
+  position: relative;
 }
 
 .header {
   background-color: #3d3a4b;
+  position: fixed;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 10%;
-  z-index: 0;
+  height: 100px;
+  z-index: 3;
   -webkit-box-shadow: 0px 19px 21px -16px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 19px 21px -16px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 19px 21px -16px rgba(0, 0, 0, 0.75);
@@ -24,6 +28,10 @@
 
 .header__element {
   padding: 0.8rem;
+}
+
+.main{
+  display: flex;
 }
 
 .header__search{
@@ -43,9 +51,11 @@
   align-items: flex-start;
   padding-left: 1rem;
   background-color: #3d3a4b;
-  height: 100%;
   width: 15%;
   padding: 0 1rem;
+  position: fixed;
+  height: 100%;
+  margin-top: 100px;
 }
 
 .lateralBar__element {
@@ -61,12 +71,6 @@
 
 .lateralBar__element a:hover {
   color: #4ea2fe;
-}
-
-.main {
-  display: flex;
-  height: 90%;
-  width: 100%;
 }
 
 /*Styles form*/
@@ -199,4 +203,38 @@
   width: 76%;
   background-color: #4ea2fe;
   color: #ccc;
+}
+
+.mainHome{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-left: 19%;
+  margin-top: 150px;
+}
+
+.section{
+  display: flex;
+  margin: 1rem auto;
+}
+
+.text__container{
+  margin: 0 auto;
+}
+
+.image{
+  margin: 0 auto;
+}
+
+.text__container{
+  display: flex;
+  flex-direction: column;
+}
+
+.text__container > p{
+  margin: 0.5rem;
+}
+
+.text__container > h2{
+  font-size: 2rem;
 }

@@ -75,7 +75,7 @@ const BarrasSimples = () => {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
-        <Tooltip />
+        <Tooltip contentStyle={{color: 'black'}}/>
         <Legend />
         <Bar dataKey="fem" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
         <Bar dataKey="mas" fill="#82ca9d" activeBar={<Rectangle fill="gold" stroke="purple" />} />

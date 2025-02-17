@@ -2,12 +2,6 @@ import React, { use, useEffect, useState } from 'react';
 import { preconnect } from 'react-dom';
 import { PieChart, Pie, Legend, Tooltip, Cell, ResponsiveContainer } from 'recharts';
 
-/*const data = [
-    { name: 'Masculino', value: 65 },
-    { name: 'Femenino', value: 73 },
-    { name: 'Otro', value: 10 },
-];*/
-
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 const RADIAN = Math.PI / 180;
@@ -84,7 +78,6 @@ const PieGrafico = () => {
 
         handleClick()
     },[clients, tickets])
-
 
     return (
         <ResponsiveContainer width="100%" height="100%">

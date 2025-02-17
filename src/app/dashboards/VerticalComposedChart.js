@@ -94,7 +94,7 @@ const VerticalComposedChart = () => {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
-        <Tooltip />
+        <Tooltip contentStyle={{color: 'black'}}/>
         <Legend />
         <Area type="monotone" dataKey="mas" stackId="1" stroke="#8884d8" fill="#8884d8" />
         <Area type="monotone" dataKey="fem" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
