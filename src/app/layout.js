@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
 
-      <body>
+      <body className={stylesG.layout}>
         <header className={stylesG.header}>
           <ul className={stylesG.header__element}><input type="button" value="" />Logo</ul>
           <ul className={stylesG.header__element}><input type="button" value="" />Notificacion</ul>

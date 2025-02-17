@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 70% 30%;
     grid-template-rows: 1fr;
+    margin-top: 100px;
 }
 
 .card__container {
@@ -25,6 +26,7 @@
     color: #ccc;
 }
 
+/*
 .form {
     display: flex;
     flex-direction: column;
@@ -87,7 +89,7 @@
     color: #ccc;
 }
 
-/*Styles form
+Styles form
 .form{
     display: flex;
     flex-direction: column;

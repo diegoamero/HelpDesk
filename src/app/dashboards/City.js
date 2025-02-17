@@ -35,7 +35,7 @@ function City() {
                 }
             })
         }
-        <h3 className={styles.chartTitles}>Ciudad con más reportes</h3>
+        <h3 className={styles.chartTitles}>Ciudad con más reportes:</h3>
         <p className={styles.chartTitles}>{mayor.name}</p>
     </div>
   )
