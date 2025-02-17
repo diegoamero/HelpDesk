@@ -15,7 +15,7 @@ export default function Page() {
           <VerticalComposedChart />
         </div>
         <div className={styles.chartContainer2} height={300} width={300}>
-          <h4 className={styles.chartTitles}>Categorías de casos con más reportes</h4>
+          <h4 className={styles.chartTitles}>Departamentos con más reportes</h4>
           <BarrasSimples />
         </div>
         <div className={styles.chartContainer3}>
