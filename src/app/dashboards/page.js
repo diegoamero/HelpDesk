@@ -1,9 +1,9 @@
 'use client';
-import { AreaChart } from 'recharts';
 import BarrasSimples from './BarrasSimples';
 import styles from './styles.module.css';
 import VerticalComposedChart from './VerticalComposedChart';
-
+import City from './City';
+import PieGrafico from './pieChart';
 
 export default function Page() {
   return (
@@ -11,13 +11,19 @@ export default function Page() {
       <h1>Reporte mensual</h1>
       <div className={styles.chartContainer}>
         <div className={styles.chartContainer1} height={300} width={300}>
+          <h4 className={styles.chartTitles}>Tendencia de reportes según el género</h4>
           <VerticalComposedChart />
         </div>
         <div className={styles.chartContainer2} height={300} width={300}>
+          <h4 className={styles.chartTitles}>Categorías de casos con más reportes</h4>
           <BarrasSimples />
         </div>
-        <div className={styles.chartContainer3} height={300} width={300}>
-          <AreaChart/>
+        <div className={styles.chartContainer3}>
+          <City />
+        </div>
+        <div className={styles.chartContainer4}>
+        <h4 className={styles.chartTitles}>Casos por género</h4>
+          <PieGrafico/>
         </div>
       </div>
     </div>
