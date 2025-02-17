@@ -161,82 +161,111 @@ export default function Form() {
     },[formClientData.client_id])
 
     return(
-        <div className={styles.form}>
-            <form onSubmit={handleSubmit}>
-                <div className={styles.input__container}>
-                    <h3>Información del cliente</h3>
-                    <label>Cliente existente:</label>
-                    <input type='checkbox' onChange={handleCheckbox}></input>
-                    {
-                        isNewClient? (
-                            <>
-                                <label htmlFor="client_name">Nombre:</label>
-                                <input className={styles.form__element} type="text" name="client_name" onChange={handleChangeClient} placeholder="Victor" required />
-                                
-                                <label htmlFor="client_lastname">Apellido:</label>
-                                <input className={styles.form__element} type="text" name="client_lastname" onChange={handleChangeClient} placeholder="Mejias" required />
-                                
-                                <label htmlFor='client_document' >Documento:</label>
-                                <input type='number' name='client_document' onChange={handleChangeClient} required></input>
+        <form onSubmit={handleSubmit} className={stylesG.form}>
+            <div className={stylesG.input__main__container}>
 
-                                <label htmlFor='client_city'>Ciudad:</label>
-                                <select name='client_city' onChange={handleChangeClient} required>
-                                    <option value='' ></option>
-                                    <option value='Barcelona'>Barcelona</option>
-                                    <option value='Lecherias'>Lecherias</option>
-                                    <option value='Puerto la cruz'>Puerto la cruz</option>
-                                </select>
+                <div className={stylesG.input__container}>
+                    <h3 className={stylesG.form__titles}>Información del cliente</h3>
+                    <div className={stylesG.newSelector__container}>
+                        <label>Cliente existente:</label>
+                        <input className={styles.form__element} type='checkbox' onChange={handleCheckbox}></input>
+                    </div>
+                    <div className={isNewClient? stylesG.newClient__container : stylesG.nonNewClient__container}>
+                        {
+                            isNewClient? (
+                                <>
+                                    <div className={stylesG.form__element__container}>
+                                        <label htmlFor="client_name">Nombre:</label>
+                                        <input className={styles.form__element} type="text" name="client_name" onChange={handleChangeClient} placeholder="Victor" required />
+                                    </div>
+                                    
+                                    <div className={stylesG.form__element__container}>
+                                        <label htmlFor="client_lastname">Apellido:</label>
+                                        <input className={styles.form__element} type="text" name="client_lastname" onChange={handleChangeClient} placeholder="Mejias" required /> 
+                                    </div>
+                                    
+                                    <div className={stylesG.form__element__container}>
+                                        <label htmlFor='client_document' >Documento:</label>
+                                        <input className={styles.form__element} type='number' name='client_document' onChange={handleChangeClient} required></input>
+                                    </div>
 
-                                <label htmlFor="client_age">Edad:</label>
-                                <input className={styles.form__element} type="number" name="client_age" onChange={handleChangeClient} placeholder="21" required />
-                                            
-                                <label htmlFor="client_sex">Sexo:</label>
-                                <select name="client_sex" onChange={handleChangeClient} required className={styles.form__element}>
-                                    <option value=""></option>
-                                    <option value="Masculino">Masculino</option>
-                                    <option value="Femenino">Femenino</option>
-                                    <option value="Otro">Otro</option>
-                                </select>
-                            </>
-                        ) :
-                            <>
-                                <label htmlFor='client_document'>Documento del cliente:</label>
-                                <input type='text' name='client_document' onChange={(e)=>{
-                                    setClientDocument(e.target.value)
-                                    console.log(clientDocument)
-                                }}required></input>
-                            </>
-                    }
+                                    <div className={stylesG.form__element__container}>
+                                        <label htmlFor='client_city'>Ciudad:</label>
+                                        <select name='client_city' onChange={handleChangeClient} required>
+                                            <option value='' ></option>
+                                            <option value='Barcelona'>Barcelona</option>
+                                            <option value='Lecherias'>Lecherias</option>
+                                            <option value='Puerto la cruz'>Puerto la cruz</option>
+                                        </select>
+                                    </div>
 
+                                    <div className={stylesG.form__element__container}>
+                                        <label htmlFor="client_age">Edad:</label>
+                                        <input className={styles.form__element} type="number" name="client_age" onChange={handleChangeClient} placeholder="21" required />
+                                    </div>
+
+                                    <div className={stylesG.form__element__container}>
+                                        <label htmlFor="client_sex">Sexo:</label>
+                                        <select name="client_sex" onChange={handleChangeClient} required className={styles.form__element}>
+                                            <option value=""></option>
+                                            <option value="Masculino">Masculino</option>
+                                            <option value="Femenino">Femenino</option>
+                                            <option value="Otro">Otro</option>
+                                        </select>
+                                    </div>
+                                </>
+                            ) :
+                                <>
+                                <div className={stylesG.form__element__container}>
+                                    <label htmlFor='client_document'>Documento del cliente:</label>
+                                    <input className={styles.form__element} type='text' name='client_document' onChange={(e)=>{
+                                        setClientDocument(e.target.value)
+                                        console.log(clientDocument)
+                                    }}required></input>
+                                </div>
+                                </>
+                        }
+                    </div>
                 </div>
-                <div className={styles.input__container}>
-                    <h3>Datos</h3> 
+
+                <div className={stylesG.input__container}>
+                    <h3 className={stylesG.form__titles}>Datos</h3> 
                     
-                    <label htmlFor="ticket_category">Departamento:</label>
-                    <select name="ticket_category" onChange={handleChangeReport} required className={styles.form__element}>
-                        <option value=""></option>
-                        {departments.map((department)=>{
-                            return(
-                                <option key={department[0]} value={department[0]}>{department[1]}</option>
-                            )
-                        })}
-                    </select>
-                    <label htmlFor="ticket_supporter">Supporter:</label>
-                    <select name="ticket_supporter" onChange={handleChangeReport} required className={styles.form__element}>
-                        <option value=""></option>
-                        {supporters.map((supporter)=>{
-                            return(
-                                <option key={supporter[0]} value={supporter[0]}>{supporter[1]}</option>
-                            )
-                        })}
-                    </select>
-                </div>
+                    <div className={stylesG.data__input__container}>
+                        <div className={stylesG.form__element__container}>
+                            <label htmlFor="ticket_category">Departamento:</label>
+                            <select className={styles.form__element} name="ticket_category" onChange={handleChangeReport} required className={styles.form__element}>
+                                <option value=""></option>
+                                {departments.map((department)=>{
+                                    return(
+                                        <option key={department[0]} value={department[0]}>{department[1]}</option>
+                                    )
+                                })}
+                            </select>
+                        </div>
 
-                <label htmlFor="ticket_description">Descripción:</label>
-                <textarea className={`${styles.form__element} ${styles.textarea}`} name="ticket_description" onChange={handleChangeReport} placeholder='Escriba la descripcion del caso aqui' required></textarea>
-                
-                <input type="submit" value="Enviar caso" className={styles.btn}/>
-            </form>
-        </div>
+                        <div className={stylesG.form__element__container}>
+                            <label htmlFor="ticket_supporter">Supporter:</label>
+                            <select className={styles.form__element} name="ticket_supporter" onChange={handleChangeReport} required className={styles.form__element}>
+                                <option value=""></option>
+                                {supporters.map((supporter)=>{
+                                    return(
+                                        <option key={supporter[0]} value={supporter[0]}>{supporter[1]}</option>
+                                    )
+                                })}
+                            </select>
+                        </div>
+
+                        <div className={stylesG.form__element__container}>
+                            <label htmlFor="ticket_description">Descripción:</label>
+                            <textarea className={`${stylesG.form__element} ${stylesG.textarea}`} name="ticket_description" onChange={handleChangeReport} placeholder='Escriba la descripcion del caso aqui' required></textarea>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            <div className={stylesG.form__submit__container}>
+                <input type="submit" value="Enviar caso"  className={stylesG.btn}/>
+            </div>
+        </form>
     )
 }

@@ -14,14 +14,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-
-      <body>
+    <html lang="en" className={stylesG.html}>
+      <body className={stylesG.body__container}>
         <header className={stylesG.header}>
           <ul className={stylesG.header__element}><input type="button" value="" />Logo</ul>
           <ul className={stylesG.header__element}><input type="button" value="" />Notificacion</ul>
         </header>
-        <div className={stylesG.main}>
+        <main className={stylesG.main}>
           <aside className={stylesG.lateralBar}>
             <ul className={stylesG.lateralBar__element}>
               <a href="/" rel="noopener noreferrer">Inicio</a>
@@ -37,7 +36,7 @@ export default function RootLayout({ children }) {
             </ul>
           </aside>
           {children}
-        </div>
+        </main>
       </body>
 
     </html>

@@ -2,6 +2,8 @@
 import styles from './styles.module.css';
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import stylesG from '../stylesG.module.css';
+
 
 export default function Form() {
 
@@ -68,22 +70,22 @@ export default function Form() {
     }, [])
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form className={stylesG.form} onSubmit={handleSubmit}>
             <div className={styles.input__container}>
-                <h3>Ingresa los datos del nuevo gestor de casos</h3>
-                <div className="form__element__container">
+                <h3 className={stylesG.form_titles}>Ingresa los datos del nuevo gestor de casos</h3>    
+                <div className={stylesG.form__element__container}>
                     <label className={styles.form__element_title} htmlFor="supporter_id">ID:</label>
-                    <input className={styles.form__element_input} type="text" name="supporter_id" onChange={handleChangeCaseManager} value={id} required readOnly/>
+                    <input type="text" name="supporter_id" onChange={handleChangeCaseManager} value={id} required readOnly/>
                 </div>
-                <div className="form__element__container">
+                <div className={stylesG.form__element__container}>
                     <label className={styles.form__element_title} htmlFor="supporter_name">Nombre:</label>
-                    <input className={styles.form__element_input} type="text" name="supporter_name" onChange={handleChangeCaseManager} placeholder="Diego" required />
+                    <input type="text" name="supporter_name" onChange={handleChangeCaseManager} placeholder="Diego" required />
                 </div>
-                <div className="form__element__container">
+                <div className={stylesG.form__element__container}>
                     <label className={styles.form__element_title} htmlFor="supporter_lastname">Apellido:</label>
-                    <input className={styles.form__element_input} type="text" name="supporter_lastname" onChange={handleChangeCaseManager} placeholder="Mejia" required />
+                    <input type="text" name="supporter_lastname" onChange={handleChangeCaseManager} placeholder="Mejia" required />
                 </div>
-                <div className="form__element__container">
+                <div className={stylesG.form__element__container}>
                     <label className={styles.form__element_title} htmlFor="supporter_department">Departamento:</label>
                     <select name="supporter_department" onChange={handleChangeCaseManager}>
                         <option value=""></option>

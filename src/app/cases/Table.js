@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect, use } from 'react';
 import SearchForm from './SearchForm';
+import styles from './styles.module.css';
 
 export default function Table() {
     const [tickets, setTickets] = useState([]);
@@ -125,33 +126,33 @@ useEffect(()=>{
     };
 
     return(
-        <div>
+        <div className={styles.searchTickets}>
             <SearchForm onSubmit={handleReportData}/>
-            <table>
-                <thead>
-                    <tr key="header">
-                        <th>Ticket ID</th>
-                        <th>Departamento</th>
-                        <th>Supporter Name</th>
-                        <th>Client name</th>
-                        <th>Register Date</th>
-                        <th>Close Date</th>
-                        <th>Description</th>
-                        <th>Status</th>
+            <table className={styles.searchTable}>
+                <thead className={styles.tableHead}>
+                    <tr key="header" className={styles.tableHeadRow}>
+                        <th className={styles.headBox}>Ticket ID</th>
+                        <th className={styles.headBox}>Departamento</th>
+                        <th className={styles.headBox}>Supporter Name</th>
+                        <th className={styles.headBox}>Client name</th>
+                        <th className={styles.headBox}>Register Date</th>
+                        <th className={styles.headBox}>Close Date</th>
+                        <th className={styles.headBox}>Description</th>
+                        <th className={styles.headBox}>Status</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className={styles.dataBody}>
                     {tickets.map((ticket, index) =>{
                         return(
-                            <tr key={index}>
-                                <td>{ticket[0]}</td>
-                                <td>{ticket[1]}</td>
-                                <td>{supportersNames[ticket[2]] || 'Cargando...'}</td>
-                                <td>{clientNames[ticket[7]] || 'Cargando...'}</td>
-                                <td>{ticket[4] == null? '' : ticket[5]}</td>
-                                <td>{ticket[5]}</td>
-                                <td>{ticket[6]}</td>
-                                <td>{ticket[3]}</td>
+                            <tr key={index} className={styles.dataRow}>
+                                <td className={styles.dataBox}>{ticket[0]}</td>
+                                <td className={styles.dataBox}>{ticket[1]}</td>
+                                <td className={styles.dataBox}>{supportersNames[ticket[2]] || 'Cargando...'}</td>
+                                <td className={styles.dataBox}>{clientNames[ticket[7]] || 'Cargando...'}</td>
+                                <td className={styles.dataBox}>{ticket[4] == null? '' : ticket[4]}</td>
+                                <td className={styles.dataBox}>{ticket[5]}</td>
+                                <td className={styles.dataBox}>{ticket[6]}</td>
+                                <td className={styles.dataBox}>{ticket[3]}</td>
                             </tr>
                         )
                         })
