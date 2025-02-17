@@ -14,7 +14,7 @@ export default function Page() {
   };
 
   return(
-    <main className={styles.container}>
+    <div className={styles.component__main}>
       <nav className={styles.nav}>
         <button 
           className={`${activeTab === 'form' ? styles.btn_active : styles.btn_inactive}`}
@@ -29,11 +29,11 @@ export default function Page() {
           Table
         </button>
       </nav>
-      <div className={styles.tabContent}>
+      <div className={styles.tab_container}>
         {activeTab === 'form' && <Form/>}
         {activeTab === 'table' && <Table/>}
       </div>
-    </main>
+    </div>
 
   ) 
 }
