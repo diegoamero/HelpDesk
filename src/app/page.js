@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function Home() {
 return (
-<div className={styleG.parent}>
-  <div className={styleG.body_container}>
+<div>
+  <div>
     <section>
       <h2>¿Cómo funciona?</h2>
       <p>
