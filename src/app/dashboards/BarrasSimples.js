@@ -3,46 +3,28 @@ import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 
 const data = [
   {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
+    name: 'Reembolsos',
+    mas: 1500,
+    fem: 2500,
+    fc: 4000,
   },
   {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
+    name: 'Aplicacion',
+    mas: 3000,
+    fem: 1398,
+    fc: 2210,
   },
   {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
+    name: 'Repartidor',
+    mas: 2000,
+    fem: 9800,
+    fc: 2290,
   },
   {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Page G',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
+    name: 'Pedido',
+    mas: 2780,
+    fem: 3908,
+    fc: 2000,
   },
 ];
 
@@ -51,7 +33,7 @@ export default class BarrasSimples extends PureComponent {
 
   render() {
     return (
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height="95%">
         <BarChart
           width={500}
           height={300}
@@ -68,8 +50,8 @@ export default class BarrasSimples extends PureComponent {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="pv" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
-          <Bar dataKey="uv" fill="#82ca9d" activeBar={<Rectangle fill="gold" stroke="purple" />} />
+          <Bar dataKey="fem" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
+          <Bar dataKey="mas" fill="#82ca9d" activeBar={<Rectangle fill="gold" stroke="purple" />} />
         </BarChart>
       </ResponsiveContainer>
     );
