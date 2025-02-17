@@ -29,9 +29,9 @@ export default function Member_card(props){
 
     return(
         <div className={styles.card}>
-            <p className={styles.card__element}>{props.name}</p>
-            <p className={styles.card__element}>{props.lastname}</p>
-            <p className={styles.card__element}>{departments[1]}</p>
+            <p className={styles.card__name}>{props.name}</p>
+            <p className={styles.card__name}>{props.lastname}</p>
+            <p className={styles.card__department}>{departments[1]}</p>
         </div>
     )
 };
