@@ -1,3 +1,8 @@
+.html{
+  width: 100vw;
+  height: 100vh;
+}
+
 .body__container {
   width: 100%;
 }
@@ -73,25 +78,81 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 800px;
-  margin: 0 auto;
-  padding: 4%;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 2rem 2rem;
+  padding: 2rem 2rem;
   background-color: #524f5f;
-  border-radius: 1%;
+  border-radius: 1rem;
+}
+
+.newClient__container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  height: 80%;
+}
+
+.nonNewClient__container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input__main__container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 90%;
 }
 
 .input__container{
   display: flex;
   flex-direction: column;
-  position: relative;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+
+.data__input__container{
+  width: 100%;
+  height: 90%;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1.5fr;
+}
+
+
+.form__submit__container{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40%;
+}
+
+.form__submit__container input{
+  width: 100%;
 }
 
 .form__element__container{
   display: flex;
   flex-direction: column;
-  margin: 0.4rem 0.2rem;
-  position: relative;
-  width: 80%;
+  padding: 1rem;
+  width: 100%;
+}
+
+.form__titles{
+  align-self: center;
+  text-align: center;
+  width: 100%;
+  height: 10%;
+  font-size: 1.5rem;
+  color: #ccc;
 }
 
 .form__element__container input[type="select"],
@@ -101,9 +162,34 @@
 .btn,
 .textarea{
   width: 100%;
+  height: 60%;
   margin-top: 0.3rem;
   padding: 0.5rem;
   border-radius: 14px;
+}
+
+.form__element__container label{
+  height: 40%;
+}
+
+.form__element__container input[type='checkbox']{
+  width: 10%;
+}
+
+.textarea{
+  width: 100%;
+  margin-top: 0.3rem;
+  padding: 0.5rem;
+  border-radius: 14px;
+}
+
+.newSelector__container{
+  height: 10%;
+  width: 100%;
+  font-size: 1.25rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .btn{

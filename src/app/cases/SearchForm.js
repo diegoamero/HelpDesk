@@ -1,4 +1,5 @@
 import React, { use, useEffect, useState } from 'react';
+import styles from './styles.module.css';
 
 export default function SearchForm(props) {
 
@@ -120,31 +121,29 @@ export default function SearchForm(props) {
     };
 
     return(
-        <div>
-            <form onSubmit={handleSubmit} onReset={handleReset}>
-                <input type="text" name="ticket_id" placeholder="ID del reporte" onChange={handleChangeReport}/>
-                <input type="text" name="client_name" placeholder="Nombre del cliente" onChange={handleChangeReport}/>
-                <input type="text" name="supporter_name" placeholder="Nombre del supporter" onChange={handleChangeReport}/>
-                <input type="date" name="ticket_generation_date" placeholder="Fecha de registro" onChange={handleChangeReport}/>
-                <input type="date" name="ticket_close_date" placeholder="Fecha de cierre" onChange={handleChangeReport}/>
+        <form className={styles.searchForm} onSubmit={handleSubmit} onReset={handleReset}>
+            <input className={styles.formInput} type="text" name="ticket_id" placeholder="ID del reporte" onChange={handleChangeReport}/>
+            <input className={styles.formInput} type="text" name="client_name" placeholder="Nombre del cliente" onChange={handleChangeReport}/>
+            <input className={styles.formInput} type="text" name="supporter_name" placeholder="Nombre del supporter" onChange={handleChangeReport}/>
+            <input className={styles.formInput} type="date" name="ticket_generation_date" placeholder="Fecha de registro" onChange={handleChangeReport}/>
+            <input className={styles.formInput} type="date" name="ticket_close_date" placeholder="Fecha de cierre" onChange={handleChangeReport}/>
 
-                <select name="ticket_status" onChange={handleChangeReport}>
-                    <option value=""></option>
-                    <option value="Abierto">Abierto</option>
-                    <option value="Cerrado">Cerrado</option>
-                </select>
+            <select className={styles.formInput} name="ticket_status" onChange={handleChangeReport}>
+                <option value=""></option>
+                <option value="Abierto">Abierto</option>
+                <option value="Cerrado">Cerrado</option>
+            </select>
 
-                <select name="ticket_category" onChange={handleChangeReport}>
-                    <option value=""></option>
-                    {departments.map((department)=>{
-                            return(
-                                <option key={department[0]} value={department[0]}>{department[1]}</option>
-                            )
-                    })}
-                </select>
-                <button type='reset'>Limpiar</button>
-                <button type="submit">Buscar</button>
-            </form>
-        </div>
+            <select className={styles.formInput} name="ticket_category" onChange={handleChangeReport}>
+                <option value=""></option>
+                {departments.map((department)=>{
+                        return(
+                            <option key={department[0]} value={department[0]}>{department[1]}</option>
+                        )
+                })}
+            </select>
+            <button className={styles.formButton} type='reset'>Limpiar</button>
+            <button className={styles.formButton} type="submit">Buscar</button>
+        </form>
     )
 }
